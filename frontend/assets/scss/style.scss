@@ -1,0 +1,34 @@
+.container {
+  margin: 0 auto;
+  max-width: 400px;
+  width: 100%;
+
+  .movie-container {
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid $base-color;
+    margin-bottom: 3px;
+    cursor: pointer;
+    float: left;
+
+    .thumbnail {
+      display: block;
+      float: left;
+      margin-right: 5px;
+      img {
+        display: block;
+      }
+    }
+
+    .info {
+      text-align: left;
+      margin-right: 5px;
+    }
+  }
+}
+
+a {
+  color: $black-color;
+  text-decoration: none;
+}
+
