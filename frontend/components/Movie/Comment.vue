@@ -20,8 +20,7 @@ export default {
   name: 'comment',
   props: { comment : Object as () => CommentInterface },
   methods: {
-    timeFormat(time) {
-      const options = { weekday: 'short', year: 'numeric', month: 'long', day: 'numeric' };
+    timeFormat(time : string) {
       return new Date(time).toLocaleString("en-GB");
     }
   }
@@ -48,6 +47,7 @@ export default {
 
   .content {
     padding: 3px;
+    word-break: break-word;
   }
 }
 

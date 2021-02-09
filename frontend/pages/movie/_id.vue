@@ -5,7 +5,8 @@
         <img v-bind:src="this.movie.url_poster" />
       </div>
       <p class="info">
-        {{ this.movie.title }} ({{this.movie.year}})
+        {{ this.movie.title }} ({{this.movie.year}})<br>
+        Rating: {{ this.movie.rating }}
       </p>
     </div>
 
@@ -50,7 +51,7 @@ export default Vue.extend({
       cansend: true,
       movie:
         {
-          "title": "........",
+          "title": "Loading...",
           "year": "0000",
           "url_poster": "https://via.placeholder.com/45x67",
           "rating": "0",
@@ -61,13 +62,13 @@ export default Vue.extend({
   },
   methods: {
     async loadCommenets() {
-      let data = await axios.get("/comment/get/"+this.$nuxt._route.params.id);
+      let data = await axios.get("/comment/get/"+this.$route.params.id);
       this.comments = data.data;
     },
     async loadMovie() {
-      let data = await axios.get("/movie/"+this.$nuxt._route.params.id);
+      let data = await axios.get("/movie/"+this.$route.params.id);
       if (data.data.error == true) {
-        $nuxt.$emit('global_message', data.data)
+        this.$bus.$emit('global_message', data.data)
         await this.$router.push('/');
         return;
       }
@@ -78,16 +79,16 @@ export default Vue.extend({
       axios.post("/comment/post", {
         name: this.name,
         text: this.message,
-        movie: this.$nuxt._route.params.id
+        movie: this.$route.params.id
       })
       .then((response) => {
         this.cansend = true;
-        $nuxt.$emit('global_message', response.data)
+        this.$bus.$emit('global_message', response.data)
         if (response.data.error == undefined) {
           this.loadCommenets();
         }
       })
-      .catch((error) => {
+      .catch(() => {
         this.cansend = true;
       })
     }

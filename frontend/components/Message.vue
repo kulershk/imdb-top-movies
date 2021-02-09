@@ -15,11 +15,11 @@ export default {
       debounce: null
     }
   },
-  mounted() {
-    this.$nuxt.$on('global_message', this.sendMessage);
+  created() {
+    this.$bus.$on('global_message', this.sendMessage);
   },
   destroyed() {
-    this.$nuxt.$off('global_message');
+    this.$bus.$off('global_message');
   },
   methods: {
     sendMessage(response) {

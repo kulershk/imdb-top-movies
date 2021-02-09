@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-      <movie v-for="item in movies" v-bind:movie='item' v-bind:key="item.idIMDB"></movie>
+      <movie v-for="item in movies" v-bind:movie='item' v-bind:key="item.id_imdb"></movie>
   </div>
 </template>
 

@@ -2,11 +2,12 @@
   <nuxt-link v-bind:to="'/movie/'+this.movie.id_imdb">
     <div class="movie-container">
       <div class="thumbnail">
-        <img v-bind:src="this.movie.url_poster" />
+        <img v-bind:src="this.movie.url_poster" alt="poster" />
       </div>
       <p class="info">
         {{ this.movie.title }} ({{this.movie.year}})<br>
-        Comments: {{ this.movie.comments }}
+        Comments: {{ this.movie.comments }}<br>
+        Rating: {{ this.movie.rating }}
       </p>
     </div>
   </nuxt-link>
@@ -18,7 +19,7 @@ interface MovieInterface {
   title: string,
   year: string,
   urlPoster: string,
-  idIMDB: string,
+  id_imdb: string,
   rating: string,
   ranking: number,
   comments: number
